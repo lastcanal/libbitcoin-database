@@ -460,10 +460,10 @@ void data_base::push_inputs(const hash_digest& tx_hash, size_t height,
 
         // If the prevout can be required here then this is better than input
         // extraction because we get pay_multisig and pay_public_key spends.
-        ////BITCOIN_ASSERT(prevout.validation);
-        ////BITCOIN_ASSERT(prevout.validation.cache.is_valid());
-        ////for (const auto& address: prevout.validation.cache.addresses())
-        for (const auto& address: input.addresses())
+        BITCOIN_ASSERT(prevout.validation);
+        BITCOIN_ASSERT(prevout.validation.cache.is_valid());
+        for (const auto& address: prevout.validation.cache.addresses())
+        ////for (const auto& address: input.addresses())
             history_->store(address.hash(), { height, point, checksum });
     }
 }
